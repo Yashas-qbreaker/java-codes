@@ -1,0 +1,77 @@
+public class MyTime {
+    // Private instance variables
+    private int hour;   // between 0 and 23
+    private int minute; // between 0 and 59
+
+    // Constructor
+    public MyTime(int hour, int minute) {
+        setTime(hour, minute);
+    }
+
+    // Method to set time with validation
+    public void setTime(int hour, int minute) {
+        setHour(hour);
+        setMinute(minute);
+    }
+
+    // Setters with validation
+    public void setHour(int hour) {
+        if (hour >= 0 && hour < 24) {
+            this.hour = hour;
+        } else {
+            throw new IllegalArgumentException("Invalid hour!");
+        }
+    }
+
+    public void setMinute(int minute) {
+        if (minute >= 0 && minute < 60) {
+            this.minute = minute;
+        } else {
+            throw new IllegalArgumentException("Invalid minute!");
+        }
+    }
+
+    // Getters
+    public int getHour() {
+        return hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    // toString method to return "HH:MM"
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d", hour, minute);
+    }
+
+    // Methods to increment time
+    public MyTime nextMinute() {
+        if (minute == 59) {
+            minute = 0;
+            nextHour();
+        } else {
+            minute++;
+        }
+        return this;
+    }
+
+    public MyTime nextHour() {
+        if (hour == 23) {
+            hour = 0;
+        } else {
+            hour++;
+        }
+        return this;
+    }
+
+    // Main method for testing
+    public static void main(String[] args) {
+        MyTime time = new MyTime(23, 59);
+        System.out.println("Current time: " + time);
+
+        System.out.println("Next minute: " + time.nextMinute());
+        System.out.println("Next hour: " + time.nextHour());
+    }
+}
