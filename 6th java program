@@ -1,0 +1,139 @@
+import java.util.Scanner;
+
+class Account {
+    public String acc_name;
+    public double acc_no;
+    public int acc_type;
+    public double balance;
+
+    public void getData(String name, double no, int type, double bal) {
+        acc_name = name;
+        acc_no = no;
+        acc_type = type;
+        balance = bal;
+    }
+}
+
+class Savings extends Account {
+    public void deposit(double amt) {
+        balance += amt;
+        System.out.println("Balance after deposit: " + balance);
+    }
+
+    public void withdraw(double amt) {
+        if (amt > balance) {
+            System.out.println("Insufficient balance.");
+        } else {
+            balance -= amt;
+            System.out.println("Balance after withdrawal: " + balance);
+        }
+    }
+
+    public void interest(int time, int no) {
+        double rate = 0.06; // Assuming 6% interest rate
+        double intr = balance * Math.pow(1 + rate / no, time * no) - balance;
+        System.out.println("Interest calculated: " + intr);
+        balance += intr;
+        System.out.println("The new balance is: " + balance);
+    }
+}
+
+class Current extends Account {
+    public void deposit(double amt) {
+        balance += amt;
+        System.out.println("Balance after deposit: " + balance);
+    }
+
+    public void withdraw(double amt) {
+        if (amt > balance) {
+            System.out.println("Insufficient balance.");
+        } else {
+            balance -= amt;
+            System.out.println("Balance after withdrawal: " + balance);
+            check(balance);
+        }
+    }
+
+    public void check(double amt) {
+        if (amt < 10000) {
+            balance -= 500;
+            System.out.println("Penalty applied. Insufficient balance: " + balance);
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int temp = 1;
+
+        while (temp == 1) {
+            System.out.println("Enter name:");
+            String name = sc.next();
+            System.out.println("Enter acc_no:");
+            double no = sc.nextDouble();
+            System.out.println("Enter acc_type\n0 for Savings\n1 for Current:");
+            int type = sc.nextInt();
+
+            System.out.println("Enter initial balance:");
+            double amt = sc.nextDouble();
+
+            if (type == 0) {
+                Savings s = new Savings();
+                s.getData(name, no, type, amt);
+                System.out.println("\n1. Deposit\n2. Withdraw\n3. Interest");
+                int temp3 = sc.nextInt();
+
+                switch (temp3) {
+                    case 1:
+                        System.out.println("Enter Amount:");
+                        double amt1 = sc.nextDouble();
+                        s.deposit(amt1);
+                        break;
+                    case 2:
+                        System.out.println("Enter Amount:");
+                        amt1 = sc.nextDouble();
+                        s.withdraw(amt1);
+                        break;
+                    case 3:
+                        System.out.println("Enter time period:");
+                        int tp = sc.nextInt();
+                        System.out.println("Enter number of times interest is compounded per year:");
+                        int nof = sc.nextInt();
+                        s.interest(tp, nof);
+                        break;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+
+            } else if (type == 1) {
+                Current c = new Current();
+                c.getData(name, no, type, amt);
+                System.out.println("\n1. Deposit\n2. Withdraw");
+                int temp3 = sc.nextInt();
+
+                switch (temp3) {
+                    case 1:
+                        System.out.println("Enter Amount:");
+                        double amt1 = sc.nextDouble();
+                        c.deposit(amt1);
+                        break;
+                    case 2:
+                        System.out.println("Enter Amount:");
+                        amt1 = sc.nextDouble();
+                        c.withdraw(amt1);
+                        break;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            } else {
+                System.out.println("Invalid account type.");
+            }
+
+            System.out.println("To continue, enter 1; to exit, enter 0:");
+            temp = sc.nextInt();
+        }
+
+        sc.close();
+    }
+}
