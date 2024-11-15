@@ -13,15 +13,12 @@ class Exercise31 {
         System.out.print("Input third number: ");
         double z = in.nextDouble();
         
-        // Check if the numbers are in increasing order
         if (x < y && y < z) {
             System.out.println("Increasing order");
         }
-        // Check if the numbers are in decreasing order
         else if (x > y && y > z) {
             System.out.println("Decreasing order");
         }
-        // If neither, they are in no particular order
         else {
             System.out.println("Neither increasing nor decreasing order");
         }
