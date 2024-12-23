@@ -1,0 +1,26 @@
+Example 1: Arithmetic exception
+
+class JavaExample {
+
+    public static void main(String args[]) {
+
+        try {
+            int num1 = 30, num2 = 0;
+            int output = num1 / num2;
+
+            System.out.println("Result: " + output);
+
+        } catch (ArithmeticException e) {
+            System.out.println("You shouldn't divide a number by zero.");
+        }
+    }
+}
+
+
+example 2: Array index out of bounds exception
+
+example 3: number format exception 
+
+example 4: string index out of bound exception
+
+example 5: Null pointer exception
