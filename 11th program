@@ -19,8 +19,70 @@ class JavaExample {
 
 example 2: Array index out of bounds exception
 
+class JavaExample {
+    public static void main(String args[]) {
+        try {
+            int a[] = new int[10];
+
+            // Attempting to access the 12th element (index 11) in a 10-element array
+            a[11] = 9;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException occurred");
+            
+        }
+    }
+}
+
+
 example 3: number format exception 
+
+class JavaExample {
+    public static void main(String args[]) {
+        try {
+            int num = Integer.parseInt("XYZ"); // This will throw a NumberFormatException
+            System.out.println(num);
+        } catch (NumberFormatException e) {
+            System.out.println("Number format exception occurred");
+            
+        }
+    }
+}
+
 
 example 4: string index out of bound exception
 
+class JavaExample {
+    public static void main(String args[]) {
+        try {
+            String str = "beginnersbook";
+
+            // Print the length of the string
+            System.out.println("Length of the string: " + str.length());
+
+            // Attempt to access the character at index 40
+            char c = str.charAt(40);
+            System.out.println("Character at index 40: " + c);
+
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("StringIndexOutOfBoundsException occurred.");
+            
+        }
+    }
+}
+
+
 example 5: Null pointer exception
+
+class JavaExample {
+    public static void main(String args[]) {
+        try {
+            String str = null;
+
+            // Attempting to access the length of a null string
+            System.out.println(str.length());
+        } catch (NullPointerException e) {
+            System.out.println("NullPointerException occurred.");
+        }
+    }
+}
+
