@@ -93,6 +93,9 @@ public class FinalMarks {
 
 
 
+
+
+
 ---------------------------------------------------------------------------------(end of 9th program)------------------------------------------------------------------------------------------------------------------
 
 
@@ -127,7 +130,7 @@ INSTRUCTIONS TO CREATE A PACKAGES AND FILES
 UNDER CIE PACKAGE.
 
 Student.java
-code------------------
+
 
 package CIE;
 
@@ -136,10 +139,10 @@ public class Student {
     public int sem;
 }
 
----------------------.
+
 
 Internals.java
-code------------------
+
 
 package CIE;
 
@@ -147,13 +150,13 @@ public class Internals extends Student {
     public int[] internalMarks = new int[5];
 }
 
-----------------------.
+
 
 
 UNDER SEE PACKAGE.
 
 External.java
-code--------------------
+
 
 package SEE;
 
@@ -163,12 +166,12 @@ public class External extends Student {
     public int[] externalMarks = new int[5];
 }
 
--------------------------.
 
-UNDER SRC.
+
+UNDER SRC FILE.
 
 FinalMarks.java
-code----------------------
+
 
 import CIE.*;
 import SEE.*;
