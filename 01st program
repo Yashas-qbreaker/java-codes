@@ -2,18 +2,18 @@
 import java.io.*;
 
 class GFG {
-    // Function to calculate the following series
+   
     static double Series(int n) {
-        double sums = 0.0; // Use double for fractional sums
+        double sums = 0.0; 
         for (int i = 1; i <= n; i++) 
-            sums += 1.0 / (i * i); // Ensure the division is done in floating-point
+            sums += 1.0 / (i * i);
         return sums;
     }
 
-    // Driver Code
+    
     public static void main(String[] args) {
         int n = 3;
         double res = Series(n); // Use double to store the result
-        System.out.printf("%.2f", res); // Print with two decimal places
+        System.out.printf("%.2f", res); 
     }
 }
