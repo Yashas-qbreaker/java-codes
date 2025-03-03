@@ -11,8 +11,6 @@ void main() {
     int i, j, n;
     char s[20];
 
-    clrscr();
-
     printf("Enter number of files: ");
     scanf("%d", &n);
 
