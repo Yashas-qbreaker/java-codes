@@ -1,64 +1,69 @@
 #include<stdio.h>
 #include<conio.h>
-#include<process.h>
-#include<string.h>
 
-int horspool(char[], char[]);
+void quick_sort(int[], int, int);
+int partition(int[], int, int);
 
 void main()
 {
-    char text[300], pattern[20];
-    int ans;
+    int a[20], i, n;
     clrscr();
-    printf("\n enter the text:\n");
-    scanf("%s", text);
-    printf("\n enter the pattern:\n");
-    scanf("%s", pattern);
-    ans = horspool(text, pattern);
-    if(ans == 1)
+    printf("\n Enter the no. of elements:\t");
+    scanf("%d", &n);
+    printf("\n Enter the elements:\n");
+    for(i = 0; i <= n - 1; i++)
     {
-        printf("\n pattern found\n");
+        scanf("%d", &a[i]);
     }
-    else
+    quick_sort(a, 0, n - 1);
+    printf("\n The sorted array is:\n");
+    for(i = 0; i <= n - 1; i++)
     {
-        printf("\n pattern is not found\n");
+        printf("%d\t", a[i]);
     }
     getch();
 }
 
-int horspool(char text[], char pattern[])
+void quick_sort(int a[], int low, int high)
 {
-    int i, j, m, n, shift[256]; // Use 256 to cover all ASCII characters
-    n = strlen(text);
-    m = strlen(pattern);
-
-    // Initialize shift table with default values
-    for(i = 0; i < 256; i++)
+    int j;
+    if(low < high)
     {
-        shift[i] = m;
+        j = partition(a, low, high);
+        quick_sort(a, low, j - 1);
+        quick_sort(a, j + 1, high);
     }
+}
 
-    for(j = 0; j <= m - 2; j++)
-    {
-        shift[pattern[j]] = m - 1 - j;
-    }
+int partition(int a[], int low, int high)
+{
+    int i, j, key, temp;
+    key = a[low];
+    i = low + 1;
+    j = high;
 
-    i = m - 1;
-    while(i < n)
+    while(1)
     {
-        j = 0;
-        while(j < m && pattern[m - 1 - j] == text[i - j])
+        while(i <= high && a[i] < key)
         {
-            j++;
+            ++i;
         }
-        if(j == m)
+        while(j >= low && a[j] > key)
         {
-            return 1;
+            --j;
+        }
+        if(i < j)
+        {
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
         }
         else
         {
-            i += shift[text[i]];
+            temp = a[low];
+            a[low] = a[j];
+            a[j] = temp;
+            return j;
         }
     }
-    return 0;
 }
