@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <conio.h>
+
+#define INF 9999
+
+int c[10][10], n, src;
+
+void dijkstras();
+
+void main()
+{
+    int i, j;
+    clrscr();
+
+    printf("\nEnter the number of vertices:\t");
+    scanf("%d", &n);
+
+    printf("\nEnter the cost matrix (Enter %d for infinity):\n", INF);
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n; j++)
+        {
+            scanf("%d", &c[i][j]);
+        }
+    }
+
+    printf("\nEnter the source node (1 to %d):\t", n);
+    scanf("%d", &src);
+
+    dijkstras();
+
+    getch();
+}
+
+void dijkstras()
+{
+    int vis[10], dist[10], u = 0, j, count, min;
+
+    for (j = 1; j <= n; j++)
+    {
+        dist[j] = c[src][j];
+        vis[j] = 0;
+    }
+
+    dist[src] = 0;
+    vis[src] = 1;
+    count = 1;
+
+    while (count < n)
+    {
+        min = INF;
+
+        for (j = 1; j <= n; j++)
+        {
+            if (dist[j] < min && !vis[j])
+            {
+                min = dist[j];
+                u = j;
+            }
+        }
+
+        vis[u] = 1;
+        count++;
+
+        for (j = 1; j <= n; j++)
+        {
+            if (!vis[j] && (min + c[u][j] < dist[j]))
+            {
+                dist[j] = min + c[u][j];
+            }
+        }
+    }
+
+    printf("\nThe shortest distances from node %d are:\n", src);
+    for (j = 1; j <= n; j++)
+    {
+        printf("%d ---> %d = %d\n", src, j, dist[j]);
+    }
+}
