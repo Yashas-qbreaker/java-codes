@@ -4,25 +4,25 @@ int main() {
     int ms, bs, nob, ef, n, mp[10], tif = 0;
     int i, p = 0;
 
-    printf("Enter the total memory available (in Bytes) -- ");
+    printf("Enter the total memory available (in Bytes): ");
     scanf("%d", &ms);
 
-    printf("Enter the block size (in Bytes) -- ");
+    printf("Enter the block size (in Bytes): ");
     scanf("%d", &bs);
 
-    nob = ms / bs;
-    ef = ms - (nob * bs);
+    nob = ms / bs;       // Number of blocks
+    ef = ms - nob * bs;  // External Fragmentation
 
-    printf("Enter the number of processes -- ");
+    printf("Enter the number of processes: ");
     scanf("%d", &n);
 
     for (i = 0; i < n; i++) {
-        printf("Enter memory required for process %d (in Bytes)-- ", i + 1);
+        printf("Enter memory required for process %d (in Bytes): ", i + 1);
         scanf("%d", &mp[i]);
     }
 
-    printf("\nNo. of Blocks available in memory -- %d", nob);
-    printf("\n\nPROCESS\tMEMORY REQUIRED\tALLOCATED\tINTERNAL FRAGMENTATION");
+    printf("\nNo. of Blocks available in memory: %d\n", nob);
+    printf("\nPROCESS\tMEMORY REQUIRED\tALLOCATED\tINTERNAL FRAGMENTATION");
 
     for (i = 0; i < n && p < nob; i++) {
         printf("\n%d\t\t%d", i + 1, mp[i]);
@@ -37,10 +37,10 @@ int main() {
     }
 
     if (i < n)
-        printf("\nMemory is Full, Remaining Processes cannot be accommodated");
+        printf("\nMemory is Full, Remaining Processes cannot be accommodated.");
 
-    printf("\n\nTotal Internal Fragmentation is %d", tif);
-    printf("\nTotal External Fragmentation is %d\n", ef);
+    printf("\n\nTotal Internal Fragmentation: %d", tif);
+    printf("\nTotal External Fragmentation: %d\n", ef);
 
     return 0;
 }
